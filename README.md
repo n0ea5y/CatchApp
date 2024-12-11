@@ -21,6 +21,7 @@ cp .env.example .env
 ```
 
 **sail コマンドのエイリアス登録したほうがの今後楽です**
+
 <sub>下記を.bashrcへ</sub>
 ```
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
