@@ -47,4 +47,8 @@ Route::prefix('enduser')->name('enduser.')->group(function () {
 
 });
 
+Route::get('/', function () {
+    return Inertia::render('EndUser/Auth/Login');
+});
+
 // require __DIR__.'/auth.php';
