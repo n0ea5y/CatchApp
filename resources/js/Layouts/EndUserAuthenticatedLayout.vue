@@ -1,16 +1,12 @@
 <script setup>
-    import { computed, ref } from 'vue';
+    import { ref } from 'vue';
     import ApplicationLogo from '@/Components/ApplicationLogo.vue';
     import Dropdown from '@/Components/Dropdown.vue';
     import DropdownLink from '@/Components/DropdownLink.vue';
     import NavLink from '@/Components/NavLink.vue';
     import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
     import { Link } from '@inertiajs/vue3';
-    import { usePage } from '@inertiajs/vue3'
 
-    const role = computed(() => {
-        return usePage().props.auth.user.role;
-    })
     const showingNavigationDropdown = ref(false);
 </script>
 
@@ -24,48 +20,33 @@
                         <div class="flex">
                             <!-- Logo -->
                             <div class="flex shrink-0 items-center">
-                                <Link v-if="role" :href="route('admin.dashboard')">
-                                <ApplicationLogo class="block h-9 w-auto fill-current text-gray-800" />
-                                </Link>
-                                <Link v-else :href="route('enduser.dashboard')">
+                                <Link :href="route('enduser.dashboard')">
                                 <ApplicationLogo class="block h-9 w-auto fill-current text-gray-800" />
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
-                            <div v-if="role" class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-
-                                <NavLink :href="route('admin.dashboard')" :active="route().current('admin.dashboard')">
-                                    Dashboard
-                                </NavLink>
-                                <NavLink :href="route('admin.shift.index')"
-                                    :active="route().current('admin.shift.index')">
-                                    シフト管理
-                                </NavLink>
-                                <NavLink :href="route('admin.staff.index')"
-                                    :active="route().current('admin.staff.index')">
-                                    スタッフ管理
-                                </NavLink>
-                                <NavLink v-if="role" :href="route('admin.store.index')"
-                                    :active="route().current('admin.store.index')">
-                                    店舗管理
-                                </NavLink>
-                            </div>
-                            <div v-else class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink :href="route('enduser.dashboard')"
-                                    :active="route().current('admin.dashboard')">
+                                    :active="route().current('enduser.dashboard')">
                                     Dashboard
                                 </NavLink>
-
                                 <NavLink :href="route('enduser.shift.index')"
                                     :active="route().current('enduser.shift.index')">
-                                    シフト
-                                </NavLink>
-
-                                <NavLink :href="route('enduser.pay.index')"
-                                    :active="route().current('enduser.pay.index')">
                                     売上
                                 </NavLink>
+                                <!-- <NavLink
+                                    :href="route('enduser.staff.index')"
+                                    :active="route().current('enduser.staff.index')"
+                                >
+                                    スタッフ管理
+                                </NavLink>
+                                <NavLink
+                                    :href="route('enduser.store.index')"
+                                    :active="route().current('enduser.store.index')"
+                                >
+                                    店舗管理
+                                </NavLink> -->
                             </div>
                         </div>
 
@@ -78,7 +59,7 @@
                                             <button type="button"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none">
                                                 {{ $page.props.auth.user.first_name }} {{
-                                                $page.props.auth.user.last_name }}
+                                                    $page.props.auth.user.last_name }}
 
                                                 <svg class="-me-0.5 ms-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 20 20" fill="currentColor">
@@ -96,11 +77,7 @@
                                         >
                                             Profile
                                         </DropdownLink> -->
-                                        <DropdownLink v-if="role" :href="route('admin.logout')" method="post"
-                                            as="button">
-                                            Log Out
-                                        </DropdownLink>
-                                        <DropdownLink v-else :href="route('enduser.logout')" method="post" as="button">
+                                        <DropdownLink :href="route('enduser.logout')" method="post" as="button">
                                             Log Out
                                         </DropdownLink>
                                     </template>
@@ -140,7 +117,7 @@
                     hidden: !showingNavigationDropdown,
                 }" class="sm:hidden">
                     <div class="space-y-1 pb-3 pt-2">
-                        <ResponsiveNavLink :href="route('admin.dashboard')" :active="route().current('dashboard')">
+                        <ResponsiveNavLink :href="route('enduser.dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
                     </div>
@@ -149,8 +126,10 @@
                     <div class="border-t border-gray-200 pb-1 pt-4">
                         <div class="px-4">
                             <div class="text-base font-medium text-gray-800">
+                                <!-- {{ $page.props.auth.user.name }} -->
                             </div>
                             <div class="text-sm font-medium text-gray-500">
+                                <!-- {{ $page.props.auth.user.email }} -->
                             </div>
                         </div>
 
@@ -158,7 +137,7 @@
                             <!-- <ResponsiveNavLink :href="route('profile.edit')">
                                 Profile
                             </ResponsiveNavLink> -->
-                            <ResponsiveNavLink :href="route('admin.logout')" method="post" as="button">
+                            <ResponsiveNavLink :href="route('enduser.logout')" method="post" as="button">
                                 Log Out
                             </ResponsiveNavLink>
                         </div>
