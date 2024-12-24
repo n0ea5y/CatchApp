@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\AdminAuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StoresController;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,9 +35,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             return Inertia::render('Admin/Staff/Index');
         })->name('staff.index');
 
-        Route::get('store-management', function () {
-            return Inertia::render('Admin/Store/Index');
-        })->name('store.index');
+        Route::get('store-management', [StoresController::class, 'index'])->name('store.index');
+        Route::get('store-management/create', [StoresController::class, 'create'])->name('store.create');
 
         Route::post('logout', [AdminAuthenticatedSessionController::class, 'destroy'])->name('logout');
     });

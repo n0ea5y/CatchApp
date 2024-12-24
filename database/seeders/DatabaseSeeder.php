@@ -15,8 +15,9 @@ class DatabaseSeeder extends Seeder
     {
         // AdminSeederを呼び出し
         $this->call(AdminSeeder::class);
-
         // EndUserSeederを呼び出し
         $this->call(EndUserSeeder::class);
+        // StoreSeederを読み出し 
+        $this->call(StoreSeeder::class);
     }
 }
