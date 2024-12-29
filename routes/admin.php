@@ -27,16 +27,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
             return Inertia::render('Dashboard');
         })->name('dashboard');
 
+        // シフト画面
         Route::get('shift-management', function () {
             return Inertia::render('Admin/Shift/Index');
         })->name('shift.index');
 
+        // スタッフ画面
         Route::get('staff-management', function () {
             return Inertia::render('Admin/Staff/Index');
         })->name('staff.index');
 
+        // 店舗画面
         Route::get('store-management', [StoresController::class, 'index'])->name('store.index');
         Route::get('store-management/create', [StoresController::class, 'create'])->name('store.create');
+        Route::post('store-management/create', [StoresController::class, 'store'])->name('store.store');
 
         Route::post('logout', [AdminAuthenticatedSessionController::class, 'destroy'])->name('logout');
     });

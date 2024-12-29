@@ -50,7 +50,9 @@ class Admin extends Authenticatable
         ];
     }
     
-    public function stores () {
-        return $this->belongsToMany(Store::class);
+    public function store()
+    {
+        return $this->belongsToMany(Store::class, 'admin_store', 'admin_id', 'store_id');    
     }
+        
 }

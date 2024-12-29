@@ -2,14 +2,11 @@
 import CardLink from '@/Components/CardLink.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-
+import CAButton from '@/Components/CAButton.vue';
 
 const props = defineProps({
     stores: Array,
 });
-
-console.log(props.stores[0]);
 
 </script>
 
@@ -31,15 +28,16 @@ console.log(props.stores[0]);
                         <div class="flex text-gray-900 text-end mb-10">
                             <p class="text-xl font-bold">店舗一覧</p>
                             <div class="ml-auto">
-                                <Link class="inline-block py-2 px-4 bg-blue-200 rounded-md border-2 border-gray-200" :href="route('admin.store.create')">店舗追加</Link>
+                                <Link :href="route('admin.store.create')">
+                                    <CAButton>店舗追加</CAButton>
+                                </Link>
                             </div>
-                            <!-- < class="ml-auto">店舗追加</PrimaryButton> -->
                         </div>
 
                         <div class="mx-auto">
-                            <div class="flex justify-between">
+                            <div class="flex justify-around flex-wrap">
                                 <template v-for="store in props.stores" :key="store.id">
-                                    <CardLink :url="route('admin.store.index', {'id': store.id})"> {{ store.name }}</CardLink>
+                                    <CardLink class="my-10" :url="route('admin.store.index', {'id': store.id})"> {{ store.name }}</CardLink>
                                 </template>
                             </div>
                         </div>
