@@ -1,28 +1,21 @@
 <script setup>
-import CardLink from '@/Components/CardLink.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import CAButton from '@/Components/CAButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import axios from 'axios';
 import { ref } from 'vue';
-
+import { formPost } from '@/Tool/Form';
 const storeDetaile = ref({
     'name': '',
     'name_kana': '',
 })
 
  const onClick = () => {
-    axios.post(route('admin.store.store'), {
-        'name' : storeDetaile.value.name,
-        'name_kana' : storeDetaile.value.name_kana,
-    }).then(function (res) {
-        window.location.href = res.data.redirect;
-    }).catch(function (err) {
-        console.log(err);
+    formPost(route('admin.store.store'), storeDetaile.value, '登録', true, (res) => {
+        if(res && res.redirect) {
+            window.location.href = res.redirect;
+        }
     })
  }
 </script>

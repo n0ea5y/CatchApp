@@ -26,8 +26,12 @@ class StoresController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'name_kana' => 'required|string',
+        ]);
         $store = new Store();
-
+        
         $store->fill($request->all());
         $store->save();
         
@@ -35,7 +39,7 @@ class StoresController extends Controller
         $admin = Admin::find(Auth::id()); // Admin IDをリクエストから取得
         if ($admin) {
             $admin->store()->attach($store->id); // 中間テーブルに関連付け
-            return response()->json(['redirect' => route('admin.store.index')]);
+            return response()->json(['redirect' => route('admin.store.index',['message' => '登録完了しました'])]);
         }
     }
 }
