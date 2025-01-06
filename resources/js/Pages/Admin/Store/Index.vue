@@ -37,7 +37,7 @@ const props = defineProps({
                         <div class="mx-auto">
                             <div class="flex justify-around flex-wrap">
                                 <template v-for="store in props.stores" :key="store.id">
-                                    <CardLink class="my-10" :url="route('admin.store.index', {'id': store.id})"> {{ store.name }}</CardLink>
+                                    <CardLink class="my-10" :url="route('admin.store.show', {'storeId': store.id})"> {{ store.name }}</CardLink>
                                 </template>
                             </div>
                         </div>

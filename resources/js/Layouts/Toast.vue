@@ -4,7 +4,6 @@ import { usePage } from '@inertiajs/vue3';
 
 const url = new URL(usePage().url, window.location.origin);
 const message = url.searchParams.get('message'); // "message" パラメータを取得
-    console.log(url);
 
 if (message) {
     successToast(message); // ここで successToast を使用

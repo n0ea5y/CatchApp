@@ -12,21 +12,25 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admin_store', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('admin_id');
             $table->unsignedBigInteger('store_id');
         
-            $table->primary(['admin_id', 'store_id']); // 複合キー
+            $table->index(['admin_id', 'store_id']);
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->timestamps();
         });
         
         Schema::create('end_user_store', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('end_user_id');
             $table->unsignedBigInteger('store_id');
         
-            $table->primary(['end_user_id', 'store_id']); // 複合キー
+            $table->index(['end_user_id', 'store_id']);
             $table->foreign('end_user_id')->references('id')->on('end_users')->onDelete('cascade');
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->timestamps();
         });
         
     }

@@ -13,6 +13,6 @@ class Store extends Model
 
     public function admin()
     {
-        return $this->belongsToMany(Admin::class, 'admin_store', 'admin_id', 'store_id');    
+        return $this->belongsToMany(Admin::class, 'admin_stores', 'admin_id', 'store_id');    
     }
 }

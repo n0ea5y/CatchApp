@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\AdminAuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StoresController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,9 +38,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
         })->name('staff.index');
 
         // 店舗画面
-        Route::get('store-management', [StoresController::class, 'index'])->name('store.index');
-        Route::get('store-management/create', [StoresController::class, 'create'])->name('store.create');
-        Route::post('store-management/create', [StoresController::class, 'store'])->name('store.store');
+        Route::get('store-management', [StoreController::class, 'index'])->name('store.index');
+
+        // 店舗追加画面
+        Route::get('store-management/create', [StoreController::class, 'create'])->name('store.create');
+        Route::post('store-management/create', [StoreController::class, 'store'])->name('store.store');
+
+        // 店舗詳細画面
+        Route::get('store-management/show/{storeId}', [StoreController::class, 'show'])->name('store.show');
+        Route::post('store-management/show', [StoreController::class, 'salesAmount'])->name('store.show.post');
 
         Route::post('logout', [AdminAuthenticatedSessionController::class, 'destroy'])->name('logout');
     });

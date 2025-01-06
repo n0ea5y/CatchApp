@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EndUserSeeder::class);
         // StoreSeederを読み出し 
         $this->call(StoreSeeder::class);
+        // Admin_Store_Seederを呼び出し:adminユーザーと店舗の紐付け
+        $this->call(Admin_Store_Seeder::class);
     }
 }

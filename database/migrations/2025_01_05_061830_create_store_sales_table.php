@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stores', function (Blueprint $table) {
+        Schema::create('store_sales', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('store_id')->comment('店舗ID')->constrained('stores')->onDelete('cascade');
+            $table->date('date')->comment('月売の日付');
+            $table->decimal('sales_amount', 15, 2)->comment('売目金額');
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stores');
+        Schema::dropIfExists('store_sales');
     }
 };
