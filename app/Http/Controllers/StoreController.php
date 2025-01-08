@@ -17,8 +17,11 @@ class StoreController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $admin = Admin::with('store')->find($user['id']);
-        $stores = $admin->store;
+        $stores = Admin::find($user['id'])->stores;
+
+        foreach ($stores as $key => $store) {
+            $store->storeSale;
+        }
         return Inertia::render('Admin/Store/Index', ['stores' => $stores]);
     }
 
@@ -46,15 +49,13 @@ class StoreController extends Controller
         }
     }
 
+    // 店舗の詳細画面（月売設定）
     public function show($id) {
-        Log::debug($id);
-
         return Inertia::render('Admin/Store/Show', ['storeId' => $id]);
     }
 
 
     public function salesAmount(Request $request) {
-        Log::debug($request);
         $validated = $request->validate([
             'store_id' => 'required|string',
             'sales_amount' => 'required|string',
@@ -63,7 +64,6 @@ class StoreController extends Controller
 
         $validated['date'] = Carbon::parse($validated['date'])->format('Y-m-d');
         $storeSale = new StoreSale();
-        Log::debug($validated);
         $storeSale->fill($validated);
         $storeSale->save();
     }

@@ -14,7 +14,8 @@ return [
     */
         'attributes' => [
             'name' => '名前',
-            'name_kana' => '名前（カナ）'
+            'name_kana' => '名前（カナ）',
+            'sales_amount' => '月売',
         ],
     'required' => ':attribute を入力してください',
 

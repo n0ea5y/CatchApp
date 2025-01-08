@@ -12,4 +12,10 @@ class StoreSale extends Model
         'date',
         'sales_amount',
     ];
+
+
+    public function store()
+    {
+        return $this->belongsToMany(Store::class, 'store_id', 'id');    
+    }
 }

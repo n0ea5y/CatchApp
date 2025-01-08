@@ -13,7 +13,7 @@ export function formPost(url, data, message, redirect = false, func) {
         const firstError = Object.values(error.response.data.errors)
             .flat() // 全てのエラーメッセージを1つの配列にまとめる
             .shift(); // 最初の要素を取得
-            errorToast(message); 
+            errorToast(firstError); 
             return func(error);
         });
 }

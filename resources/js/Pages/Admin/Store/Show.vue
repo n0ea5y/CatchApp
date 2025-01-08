@@ -19,7 +19,6 @@ const storeDetaile = ref({
 
  const onClick = () => {
     formPost(route('admin.store.show.post'), storeDetaile.value, '登録', false, (res) => {
-        console.log(res);
     });
  }
 </script>
