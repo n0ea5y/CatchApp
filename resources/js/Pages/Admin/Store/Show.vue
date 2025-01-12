@@ -40,7 +40,10 @@ const storeDetaile = ref({
                     <InputLabel for="month" value="月売"></InputLabel>
                     <TextInput id="month" v-model="storeDetaile.sales_amount"></TextInput>
                 </div>
-                <CAButton @click="onClick">登録</CAButton>
+                <CAButton class="mr-10" @click="onClick">登録</CAButton>
+                <Link :href="route('admin.store.index')">
+                    <CAButton>戻る</CAButton>
+                </Link>
             </div>
         </div>
     </AuthenticatedLayout>

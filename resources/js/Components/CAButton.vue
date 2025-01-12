@@ -1,9 +1,23 @@
 <script setup>
+    const props = defineProps({
+        type: {
+            type: String,
+            default: 'primary',
+        }
+    });
+    console.log(props.type);
 
+    const items = {
+            'insert': 'bg-yellow-200',
+            'update': 'bg-green-200',
+            'delete': 'bg-red-200',
+            'primary': 'bg-blue-200',
+        };
+    
 </script>
 
 <template>
-    <button class="btn btn-aftaer">
+    <button class="btn btn-aftaer" :class="items[type]">
         <slot></slot>
     </button>
 </template>
@@ -15,20 +29,18 @@
         padding: 5px 20px;
         border-radius: 5px;
         border: 1px solid rgba(0, 0, 200, 0.3);
-        background-color: rgba(0, 0, 255, 0.3); /* 背景色 */
         box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
         -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
         transition: all 0.1s
     }
 
     .btn:hover {
-        /* margin-top: 2px; */
         transform: translateY(2px);
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* シャドウも少し弱める */
     }
 
     .btn:active {
-        background-color: rgba(0, 0, 200, 0.6); /* クリック時に色を濃く */
+        filter: brightness(0.8); /* 明るさを変更してクリック感を出す */
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* クリック時にシャドウを弱く */
         transform: translateY(2px); /* クリック時の押し込み効果 */
     }
@@ -43,7 +55,7 @@
         top: 3px;
         left: 0;
         border-radius: 5px;
-        border-bottom: 3px solid rgba(0, 0, 128, 0.5); /* 初期状態のボーダー */
+        border-bottom: 3px solid rgba(0, 0, 0, 0.5); 
         transition: border-bottom 2s ease top 5s; /* スムーズな変化 */
     }
 

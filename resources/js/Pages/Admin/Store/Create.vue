@@ -43,7 +43,10 @@ const storeDetaile = ref({
                         <TextInput id="store-name_kanea" v-model="storeDetaile.name_kana"></TextInput>
                     </div>
                 </div>
-                <CAButton @click="onClick">登録</CAButton>
+                <CAButton type="insert" class="mr-10" @click="onClick">登録</CAButton>
+                <Link :href="route('admin.store.index')">
+                    <CAButton>戻る</CAButton>
+                </Link>
             </div>
         </div>
     </AuthenticatedLayout>
